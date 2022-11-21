@@ -1,5 +1,6 @@
 <?php 
     include('../model.php');
+    include('db/database.php');
 ?>
 <div class="container-fluid">
     <div class="row">
@@ -24,6 +25,16 @@
             </thead>
             <tbody>
                 <?php
+                    if(isset($_GET["id_users"]))
+                    {
+                        $id_users = $_GET['id_users'];
+                        $sql = "DELETE FROM users WHERE id_users=$id_users";
+                        $conn = mysqli_connect('localhost:3306', 'root', '', 'homestay');  
+                        $resultset = mysqli_query($conn, $sql);
+                        mysqli_close($conn);
+                        echo '<script>alert("Đã xóa thành công!")</script>';
+                        echo "<script>window.location.href='index.php?page=users.php'</script>";
+                    }
                     // Lấy danh sách danh mục sản phẩm từ database
                     // $sql = 'SELECT * FROM users';
                     $users = selectUser();

@@ -1,11 +1,10 @@
 <?php 
-    session_start();
     include 'include/header.php';
 ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
-
+    
     <title>Home</title>
     
 </head>

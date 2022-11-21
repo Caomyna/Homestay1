@@ -23,7 +23,7 @@
         return $data;
     }
 
-    function executeSingle($sql){
+    function executeSingleResult($sql){
         $conn = mysqli_connect(HOST, USERNAME, PASSWORD, DATABASE);    
         $resultset = mysqli_query($conn, $sql); 
         $row = mysqli_fetch_array($resultset, 1);

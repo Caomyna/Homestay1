@@ -1,7 +1,5 @@
 <?php 
-    session_start();
     include ('include/header.php');
-    include ('model.php');
 
     if (isset($_POST['register'])) {
         $fullname = $_POST['fullname'];
@@ -32,7 +30,7 @@
             $_SESSION['fullname'] = $user['fullname'];
             $_SESSION['email'] = $user['email'];
             $_SESSION['password'] = $user['password'];
-            $_SESSION['role'] = $user['role'];
+            $_SESSION['id_users'] = $user['id_users'];
             if ($user['role'] == 1){
                 $_SESSION['role'] = 'admin';
                 echo "<script>window.location.href='admin/index.php'</script>";

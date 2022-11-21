@@ -1,3 +1,7 @@
+<?php 
+    session_start();
+    include('model.php');
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -38,18 +42,15 @@
                         <li class="nav-item dropdown">
                             <a class="nav-link submenu" href="package.php">Các địa điểm</a>
                             <ul class="dropdown-content">
-                                <li><a class="dropdown-item" href="package.php#daLat">Đà Lạt</a></li>
-                                <li><a class="dropdown-item" href="package.php#daNang">Đà Nẵng</a></li>
-                                <li><a class="dropdown-item" href="package.php#hoiAn">Hội An</a></li>
-                                <li><a class="dropdown-item" href="package.php#hue">Huế</a></li>
-                                <li><a class="dropdown-item" href="package.php#haNoi">Hà Nội</a></li>
-                                <li><a class="dropdown-item" href="package.php#haGiang">Hà Giang</a></li>
-                                <li><a class="dropdown-item" href="package.php#khanhHoa">Khánh Hòa</a></li>
-                                <li><a class="dropdown-item" href="package.php#ninhBinh">Ninh Bình</a></li>
-                                <li><a class="dropdown-item" href="package.php#nhaTrang">Nha Trang</a></li>
-                                <li><a class="dropdown-item" href="package.php#mocChau">Mộc Châu</a></li>
-                                <li><a class="dropdown-item" href="package.php#vungTau">Vũng Tàu</a></li>
-                                <li><a class="dropdown-item" href="package.php#saPa">Sa Pa</a></li>
+                                <?php 
+                                    $listLocation = selectLocation();
+                                    $index = 1;
+                                    foreach($listLocation as $item) :
+                                ?>
+                                <li><a class="dropdown-item" href="package.php#daLat"><?php echo $item['name'];?></a></li>
+
+                                <?php endforeach;?>
+                                
                             </ul>
                         </li>
                         <li class="nav-item">
@@ -57,9 +58,11 @@
                         </li>
                 
                         <?php
-                            if (isset($_SESSION ['fullname']) && $_SESSION['role'] == 'user')
+                            if (isset($_SESSION ['fullname']))
                             {
-                                echo '
+                                if($_SESSION['role'] == 'user')
+                                {
+                                    echo '
                                     <li class="nav-item">
                                         <a href="" class="fas fa-user iconuser"></a>
                                     </li>
@@ -72,7 +75,8 @@
                                             </li>
                                         </ul>
                                     </li>
-                                ';  
+                                '; 
+                                }
                             }
                             else
                             { 

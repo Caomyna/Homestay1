@@ -6,11 +6,21 @@
 <html lang="en">
 <head>
     <title>Book</title>
+    <script src="jquery-3.6.1.slim.min.js"></script>
+
+   <!-- <script type="text/javascript">
+      $(document).ready(function($){
+         $("#id_location").change(function(event){
+            $id_location = $("#id_location").val();
+            $.post("data.php",{"id_location" :id_location}, function(data){
+               $("#id_homestay").html(data);
+            })
+         });
+      });
+   </script> -->
+  
 </head>
 <body>
-<!-- <div class="heading" style="background:url(http://localhost/homestayWeb/images/header-bg-3.png) no-repeat">
-   <h1>book now</h1>
-</div> -->
 
 <div class="heading" style="background:url(https://dsdigkpw1b1xa.cloudfront.net/frontend/images/vietnam-trip-4.jpg) no-repeat">
    <h1>Đặt vé ngay</h1>
@@ -22,7 +32,7 @@
 
    <h1 class="heading-title">Hãy nhập thông tin của bạn!</h1>
 
-   <form action="book_db.php" method="post" class="book-form">
+   <form action="" method="post" class="book-form">
 
       <div class="flex">
          <div class="inputBox">
@@ -39,21 +49,35 @@
          </div>
          <div class="inputBox">
             <span>Chọn địa điểm muốn đến :</span>
-            <select name="id_location" class="form-select" style="height:50px; border-radius:20px;">
+            <select name="id_location" id="id_location" class="form-select" style="height:50px; font-size:16px; border:1px solid black; border-radius:20px;">
+               <option style="font-size:16px;">Chọn Địa điểm</option>
                <?php
                   // Lấy danh sách danh mục sản phẩm từ database
-                  $sql = 'select * from location';
+                  $sql = "SELECT * FROM location";
                   $listLocation = executeResult($sql);
                   foreach($listLocation as $item) : 
+               ?> 
+               <option value="<?php echo $item['id_location']; ?>" style="font-size:16px;"><?php echo $item['name']; ?></option>
+               <?php
+                  endforeach;
                ?>
-            
-               <option value="<?php echo $item['id_location']; ?>"><?php echo $item['name']; ?></option>
-               <?php endforeach; ?>
             </select>
          </div>
          <div class="inputBox">
-            <span>Địa chỉ :</span>
-            <input type="text" placeholder="Hãy nhập địa chỉ của bạn" name="address" required>
+            <span>Chọn Homestay muốn đến :</span>
+            <select name="id_homestay" id="id_homestay" class="form-select" style="height:50px; font-size:16px; border:1px solid black; border-radius:20px;">
+               <option style="font-size:16px;">Chọn Homestay</option>
+               <?php
+                  // Lấy danh sách danh mục sản phẩm từ database
+                  $sql = "SELECT * FROM homestay";
+                  $listLocation = executeResult($sql);
+                  foreach($listLocation as $item) : 
+               ?> 
+               <option value="<?php echo $item['id_homestay']; ?>" style="font-size:16px;"><?php echo $item['homestay_name']; ?></option>
+               <?php
+                  endforeach;
+               ?>
+            </select>
          </div>
          <div class="inputBox">
             <span>Bao nhiêu khách:</span>
@@ -76,9 +100,34 @@
 </section>
 
 <!-- booking section ends -->
-
-
 </body>
 </html>
 
 <?php  include 'include/footer.php';?>
+<?php
+   if (isset($_POST['send'])) {
+      if(!isset($_SESSION['fullname'])){
+         echo "<script>window.location.href='login.php'</script>";
+      }elseif(isset($_SESSION['fullname'])){
+         $users_id = $_SESSION['id_users'];
+         $fullname = $_POST['fullname'];
+         $phone_number = $_POST['phone_number'];
+         $address = $_POST['address'];
+         // $location = $_POST['id_location'];
+         $homestay = $_POST['id_homestay'];
+         $quantity = $_POST['quantity'];
+         $arrival_date = $_POST['arrival_date'];
+         $leave_date = $_POST['leave_date'];
+         $sql = "INSERT INTO booking (users_id, homestay_id, fullname, phone_number, address, quantity, arrival_date, leave_date) 
+         VALUES ('$users_id', '$homestay','$fullname', '$phone_number', '$address', ' $quantity', '$arrival_date', '$leave_date')";
+         $bookingAdd = execute($sql);
+         echo '<script>alert("Đặt vé thành công !")</script>';        
+         // echo "<script>window.location.href='login.php'</script>";
+      }else {
+         ini_set('display_errors', 1);
+         ini_set('display_startup_errors', 1);
+         error_reporting(E_ALL);
+      }
+   }
+?>
+

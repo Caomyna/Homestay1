@@ -1,5 +1,4 @@
 <?php 
-   session_start();
     include 'include/header.php';
 ?>
 <!DOCTYPE html>
@@ -13,65 +12,60 @@
 <body>
    </section>
 
-   <!-- header section ends -->
+      <!-- header section ends -->
 
-   <div class="heading" style="background:url(images/header-bg-1.png) no-repeat">
-      <h1>about us</h1>
-   </div>
-   <!-- <div class="heading" style="background:url(https://static.mservice.io/blogscontents/momo-upload-api-210614140454-637592762946346400.jpg) no-repeat">
-      <h1>about us</h1>
-   </div> -->
+      <div class="heading" style="background:url(images/header-bg-1.png) no-repeat">
+         <h1>about us</h1>
+      </div>
 
-   <!-- about section starts  -->
+      <section class="about">
 
-   <section class="about">
+      <div class="image">
+         <img src="images/about-img.jpg" alt="" style="margin-bottom: 40px;">
+         <img src="https://statics.vinpearl.com/di-hoi-an-mua-nao-dep-nhat-2.jpg" alt="">
+      </div>
 
-   <div class="image">
-      <img src="images/about-img.jpg" alt="" style="margin-bottom: 40px;">
-      <img src="https://statics.vinpearl.com/di-hoi-an-mua-nao-dep-nhat-2.jpg" alt="">
-   </div>
-
-   <div class="content">
-      <h3>“Đầu tư vào du lịch là một khoản đầu tư cho bản thân.”</h3>
-      <p>đó là một câu nói của Matthew Karsten-một blogger du lịch 
-         phiêu lưu, nhiếp ảnh gia & người du mục kỹ thuật số, người 
-         đã khám phá thế giới trong hơn 10 năm. Với ông đi du lịch 
-         sẽ đem về cho chính bản thân những điều tuyệt vời. Vậy nên 
-         khi bạn đã dành dụm cho mình đủ một số tiền để đi du lịch 
-         thì bạn cần chần chừ gì nữa mà hãy vác balo lên và đi thôi, 
-         vì mọi thứ còn lại hãy để chúng tôi lo.</p>
-      <p>Chúng tôi là <b>Let's travel </b>- một nền tảng đặt phòng trực 
-         tuyến #1 tại Việt Nam. Đồng hành cùng chúng tôi, bạn sẽ có 
-         những chuyến đi mang đầy trải nghiệm. Với Let's travel, 
-         việc đặt chỗ ở, biệt thự nghỉ dưỡng, khách sạn, nhà riêng, 
-         chung cư... trở nên nhanh chóng, thuận tiện và dễ dàng hơn. 
-         Các bạn sẽ được trải nghiệm những tiện ích tuyệt vời nhất 
-         tại khu nghỉ dưỡng mà chúng tôi cung cấp. Sẽ có nhiều 
-         option để bạn lựa chọn: về nơi mà bạn muốn đến, về loại 
-         phòng, giá cả, ăn uống,... Chúng tôi đánh thức khách hàng 
-         của mình để tiếp tục với một cuộc sống phong phú, tràn ngập
-          những cuộc gặp gỡ du lịch phi thường.</p>
-      <div class="icons-container">
-         <div class="icons">
-            <i class="fas fa-map"></i>
-            <span>Homestay nổi tiếng</span>
-         </div>
-         <div class="icons">
-            <i class="fas fa-hand-holding-usd"></i>
-            <span>Giá cả hợp lý</span>
-         </div>
-         <div class="icons">
-            <i class="fas fa-headset"></i>
-            <span>Hỗ trợ 24/7</span>
-         </div>
-         <div class="icons">
-            <i class="fas fa-check"></i>
-            <span>Uy tín </span>
+      <div class="content">
+         <h3>“Đầu tư vào du lịch là một khoản đầu tư cho bản thân.”</h3>
+         <p>đó là một câu nói của Matthew Karsten-một blogger du lịch 
+            phiêu lưu, nhiếp ảnh gia & người du mục kỹ thuật số, người 
+            đã khám phá thế giới trong hơn 10 năm. Với ông đi du lịch 
+            sẽ đem về cho chính bản thân những điều tuyệt vời. Vậy nên 
+            khi bạn đã dành dụm cho mình đủ một số tiền để đi du lịch 
+            thì bạn cần chần chừ gì nữa mà hãy vác balo lên và đi thôi, 
+            vì mọi thứ còn lại hãy để chúng tôi lo.</p>
+         <p>Chúng tôi là <b>Let's travel </b>- một nền tảng đặt phòng trực 
+            tuyến #1 tại Việt Nam. Đồng hành cùng chúng tôi, bạn sẽ có 
+            những chuyến đi mang đầy trải nghiệm. Với Let's travel, 
+            việc đặt chỗ ở, biệt thự nghỉ dưỡng, khách sạn, nhà riêng, 
+            chung cư... trở nên nhanh chóng, thuận tiện và dễ dàng hơn. 
+            Các bạn sẽ được trải nghiệm những tiện ích tuyệt vời nhất 
+            tại khu nghỉ dưỡng mà chúng tôi cung cấp. Sẽ có nhiều 
+            option để bạn lựa chọn: về nơi mà bạn muốn đến, về loại 
+            phòng, giá cả, ăn uống,... Chúng tôi đánh thức khách hàng 
+            của mình để tiếp tục với một cuộc sống phong phú, tràn ngập
+            những cuộc gặp gỡ du lịch phi thường.</p>
+         <div class="icons-container">
+            <div class="icons">
+               <i class="fas fa-map"></i>
+               <span>Homestay nổi tiếng</span>
+            </div>
+            <div class="icons">
+               <i class="fas fa-hand-holding-usd"></i>
+               <span>Giá cả hợp lý</span>
+            </div>
+            <div class="icons">
+               <i class="fas fa-headset"></i>
+               <span>Hỗ trợ 24/7</span>
+            </div>
+            <div class="icons">
+               <i class="fas fa-check"></i>
+               <span>Uy tín </span>
+            </div>
          </div>
       </div>
-   </div>
 
-</section>
+   </section>
 
    <!-- about section ends -->
 

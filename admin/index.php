@@ -25,9 +25,17 @@
 
                 <ul class="nav navbar-right navbar-top-links">
                     <li class="dropdown">
-                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="">
                             <i class="fa fa-user fa-fw"></i> 
-                            <?php echo $_SESSION['fullname']; ?>
+                            <?php 
+                                if(isset( $_SESSION['fullname']))
+                                {
+                                    if($_SESSION['role']=='admin'){
+                                        echo $_SESSION['fullname']; 
+                                    }
+                                }
+                                else echo "<script>window.location.href='../login.php'</script>";
+                            ?>
                             <b class="caret"></b>
                         </a>
                         <ul class="dropdown-menu dropdown-user">

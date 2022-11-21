@@ -1,7 +1,6 @@
 <?php 
-   session_start();
    include 'include/header.php';
-   include('model.php');
+   // include('model.php');
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -26,24 +25,24 @@
    <section class="packages">
          <h1 class="heading-title" style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">ĐIỂM ĐẾN <span>NỔI BẬT</span></h1>
          <?php  
-            $listP = getProList();
+            $listP = selectLocation();
             foreach ($listP as $p) {
          ?>
-            <div class="diadiem" id="hoiAn">
-               <p class="title">ĐỊA ĐIỂM NỔI BẬT Ở <span><?php echo($p['proName']) ?></span></p>
+            <div class="diadiem" id="">
+               <p class="title">Địa điểm nổi bật ở <span><?php echo($p['name']) ?></span></p>
                <div class="box-container">
                   <?php  
-                     $proId = $p['proId'];
+                     $proId = $p['id_location'];
                      $listL = getLocateByProId($proId);
                      foreach ($listL as $l) {
                   ?>
                      <div class="box">
                         <div class="image">
-                           <img src="images/<?php echo($l['locateLink']) ?>" alt="">
+                           <img src="images/<?php echo($l['images']) ?>" alt="">
                         </div>
                         <div class="content">
-                           <h3><?php echo($l['locateName']) ?></h3>
-                           <p><?php echo($l['locateDescription']) ?></p>
+                           <h3><?php echo($l['homestay_name']) ?></h3>
+                           <p><?php echo($l['descript']) ?></p>
                         </div>
                         <div class="divbtn">
                            <a href="book.php" class="btn">Đặt ngay</a>

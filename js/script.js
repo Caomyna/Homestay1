@@ -59,4 +59,12 @@ function book_firm() {
 function inform() {
    alert("Bạn đã đăng kí thành công!!!");
  }
- 
+
+// $(document).ready(function(){
+//    $(".location").change(function(){
+//       var id_location = $(".location").val();
+//       $.post("data.php",{id_location: id_location}, function(data){
+//          $(".homestay").html(data);
+//       })
+//    })
+// })

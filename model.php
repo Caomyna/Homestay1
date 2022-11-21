@@ -1,5 +1,4 @@
 <?php  
-    // session_start();
     function connect_DB() {
         $dsn = 'mysql:host=localhost;dbname=homestay'; 
         $userAd = 'root'; 
@@ -38,9 +37,21 @@
         $statement->closeCursor();
         return $result;
     }
-    function getLocateByProId($id_homestay) {
+
+    function getLocateByProId($location_id) {
         $db = connect_DB();
-        $query = "SELECT * FROM homestay WHERE (id_homestay = :id_homestay)";
+        $query = "SELECT * FROM homestay WHERE (location_id= :location_id)";
+        $statement = $db->prepare($query);
+        $statement->bindValue(':location_id', $location_id);
+        $statement->execute();
+        $result = $statement->fetchAll();
+        $statement->closeCursor();
+        return $result;
+    }
+
+    function deleteLocateByProId($id_homestay) {
+        $db = connect_DB();
+        $query = "DELETE FROM homestay WHERE (id_homestay = :id_homestay)";
         $statement = $db->prepare($query);
         $statement->bindValue(':id_homestay', $id_homestay);
         $statement->execute();
@@ -76,6 +87,17 @@
         return $result;
     }
 
+    function deleteUserByID($userId) {
+        $db = connect_DB();
+        $query = "DELETE FROM users WHERE (id_users = :id_users)";
+        $statement = $db->prepare($query);
+        $statement->bindValue(':id_users', $userId);
+        $statement->execute();
+        $result = $statement->fetchAll();
+        $statement->closeCursor();
+        return $result;
+    }
+
     //select 1 hàng
     function executeSingle($sql){
         $conn = mysqli_connect('localhost', 'root', '', 'homestay');    
@@ -90,6 +112,34 @@
         $query = "DELETE FROM location WHERE id_location=$id_location";
         $statement = $db->prepare($query);
         $statement->bindValue(':id_location', $id_location);
+        $statement->execute();
+        $result = $statement->fetchAll();
+        $statement->closeCursor();
+        return $result;
+    }
+
+    function insertHomestay($proId, $locateName, $locateImg, $locateAddress, $locateDes, $locatePrice) {
+        $db = connect_DB();
+        $query = "INSERT INTO homestay(location_id, homestay_name, images, address, descript, price) VALUES (:proId, :locateName, :locateImg, :locateAddress, :locateDescription, :locatePrice)";
+        try {
+            $statement = $db->prepare($query);
+            $statement->bindValue(':proId', $proId);
+            $statement->bindValue(':locateName', $locateName);
+            $statement->bindValue(':locateImg', $locateImg);
+            $statement->bindValue(':locateAddress', $locateAddress);
+            $statement->bindValue(':locateDescription', $locateDes);
+            $statement->bindValue(':locatePrice', $locatePrice);
+            $result = $statement->execute();
+            $statement->closeCursor();
+            return $result;
+        } catch(Exception $e) {
+            return $e->getMessage();
+        }
+    }
+    function getHomestay() {
+        $db = connect_DB();
+        $query = "SELECT * FROM homestay";
+        $statement = $db->prepare($query);
         $statement->execute();
         $result = $statement->fetchAll();
         $statement->closeCursor();

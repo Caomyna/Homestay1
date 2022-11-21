@@ -33,6 +33,7 @@ CREATE TABLE `booking` (
 CREATE TABLE `homestay` (
   `id_homestay` int(11) NOT NULL,
   `location_id` int(11) DEFAULT NULL,
+  `homestay_name` varchar(50) NOT NULL,
   `images` varchar(355) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `address` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `descript` longtext COLLATE utf8mb4_unicode_ci DEFAULT NULL,

@@ -32,6 +32,15 @@
             </thead>
             <tbody>
                 <?php
+                     if(isset($_GET["id_location"]))
+                     {
+                         $id_location = $_GET['id_location'];
+                         $sql = "DELETE FROM location WHERE id_location=$id_location";
+                         $conn = mysqli_connect('localhost:3306', 'root', '', 'homestay');    
+                        $resultset = mysqli_query($conn, $sql);
+                         echo '<script>alert("Đã xóa thành công!")</script>';
+                         echo "<script>window.location.href='index.php?page=location_list.php'</script>";
+                     }
                     // Lấy danh sách danh mục sản phẩm từ database
                     $listLocation = selectLocation();
                     $index = 1;
@@ -43,10 +52,10 @@
                     <td><?php echo $item['id_location']; ?></td>
                     <td><?php echo $item['name']; ?></td>
                     <td>
-                        <a href="index.php?page=location_list.php&id_category=<?php echo $item['id_location'];?>" onclick="" class="btn btn-warning">Sửa</a>
+                        <a href="index.php?page=location_add.php&id_location=<?php echo $item['id_location'];?>" class="btn btn-warning">Sửa</a>
                     </td>
                     <td>
-                        <a href="index.php?page=location_list.php&id_location=<?php echo $item['id_location'];?>" onclick="deleteLocation()" class="btn btn-danger">Xóa</a>
+                        <a href="index.php?page=location_list.php&id_location=<?php echo $item['id_location'];?>"class="btn btn-danger">Xóa</a>
                     </td>
                 </tr>
             </tbody>

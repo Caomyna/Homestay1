@@ -1,6 +1,5 @@
 <?php 
    include 'include/header.php';
-   // include('model.php');
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -28,7 +27,7 @@
             $listP = selectLocation();
             foreach ($listP as $p) {
          ?>
-            <div class="diadiem" id="">
+            <div class="diadiem" id="<?php echo $p['id_location'];?>">
                <p class="title">Địa điểm nổi bật ở <span><?php echo($p['name']) ?></span></p>
                <div class="box-container">
                   <?php  

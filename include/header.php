@@ -1,6 +1,10 @@
 <?php 
     session_start();
     include('model.php');
+
+    // if (isset($_GET['id_location'])) {
+    //     # code...
+    // }
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -21,7 +25,6 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> 
     <link href='https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css' rel='stylesheet'>
 </head>
-
 
 <body>
    
@@ -47,7 +50,7 @@
                                     $index = 1;
                                     foreach($listLocation as $item) :
                                 ?>
-                                <li><a class="dropdown-item" href="package.php#daLat"><?php echo $item['name'];?></a></li>
+                                <li><a class="dropdown-item" href="package.php#<?php echo $item['id_location'];?>"><?php echo $item['name'];?></a></li>
 
                                 <?php endforeach;?>
                                 
@@ -58,10 +61,9 @@
                         </li>
                 
                         <?php
-                            if (isset($_SESSION ['fullname']))
+                            if (isset($_SESSION ['fullname'])&&$_SESSION['role'] == 'user')
                             {
-                                if($_SESSION['role'] == 'user')
-                                {
+                                
                                     echo '
                                     <li class="nav-item">
                                         <a href="" class="fas fa-user iconuser"></a>
@@ -76,7 +78,7 @@
                                         </ul>
                                     </li>
                                 '; 
-                                }
+                           
                             }
                             else
                             { 

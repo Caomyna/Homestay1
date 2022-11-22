@@ -49,11 +49,6 @@
 
     </section>
 
-    <!-- home section ends -->
-
-    
-    <!-- services section starts  -->
-
     <section class="services">
 
         <h1 class="heading-title"> Các <span>DỊCH VỤ</span></h1>
@@ -89,10 +84,6 @@
 
     </section>
 
-    <!-- services section ends -->
-
-    <!-- home about section starts  -->
-
     <section class="home-about">
 
         <div class="image">
@@ -107,13 +98,9 @@
 
     </section>
 
-    <!-- home about section ends -->
-
-    <!-- home packages section starts  -->
     <section class="home-packages">
 
         <h1 class="heading-title"> Các Tour <span>NỔI BẬT</span> </h1>
-
         <div class="box-container">
 
             <div class="box">
@@ -214,16 +201,10 @@
                     <a href="book.php" class="btn">Đặt ngay</a>
                 </div>
             </div>
-
         </div>
-
         <div class="load-more"> <a href="package.php" class="btn">Xem Thêm</a> </div>
 
     </section>
-
-    <!-- home packages section ends -->
-
-    <!-- home offer section starts  -->
 
     <section class="home-offer">
         <div class="content">

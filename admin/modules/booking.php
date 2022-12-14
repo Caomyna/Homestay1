@@ -1,23 +1,10 @@
 <?php 
-    // include('../model.php');
     include 'db/database.php';
-
-    // function deleteBooking(){
-    //     $id_book=$_GET['id_book'];
-    //     $result=deleteBookingByID($id_book);
-    //     if ($result) {
-    //         echo "<script>window.location.href='booking.php'</script>";
-    //         echo "<script>alert('Xóa thành công')</script>";
-    //     } else {
-    //         echo "<script>alert('Xóa không thành công')</script>";
-    //     }
-        
-    // }
 ?>
 <div class="container-fluid">
     <div class="row">
         <div class="col-lg-12">
-            <h1 class="page-header">Danh sách địa điểm</h1>
+            <h1 class="page-header">Quản lý đặt phòng</h1>
         </div>
             <!-- /.col-lg-12 -->
     </div>
@@ -26,13 +13,13 @@
             <thead>
                 <tr>
                     <th>STT</th>
-                    <th>ID_Booking</th>
                     <th>Fullname</th>
                     <th>Phone</th>
                     <th>Homestay</th>
                     <th>Quantity</th>
                     <th>Arrival_date</th>
                     <th>Leave_date</th>
+                    <th width="15px"></th>
                     <th width="15px"></th>
                 </tr>
             </thead>
@@ -57,13 +44,15 @@
             
                 <tr>
                     <td><?php echo $index++; ?></td>
-                    <td><?php echo $item['id_book']; ?></td>
                     <td><?php echo $item['fullname']; ?></td>
                     <td><?php echo $item['phone_number']; ?></td>
                     <td><?php echo $item['homestay_name']; ?></td>
                     <td><?php echo $item['quantity']; ?></td>
                     <td><?php echo $item['arrival_date']; ?></td>
                     <td><?php echo $item['leave_date']; ?></td>
+                    <td>
+                        <a href="index.php?page=book_detail.php&id_book=<?php echo $item['id_book'];?>"class="btn btn-success">Xem</a>
+                    </td>
                     <td>
                         <a href="index.php?page=booking.php&id_book=<?php echo $item['id_book'];?>"class="btn btn-danger">Xóa</a>
                     </td>

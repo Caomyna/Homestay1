@@ -13,4 +13,4 @@
 <script src="js/morris-data.js"></script>
 
 <!-- Custom Theme JavaScript -->
-<!-- <script src="js/startmin.js"></script> -->
+<script src="js/startmin.js"></script>

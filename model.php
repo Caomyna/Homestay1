@@ -118,6 +118,31 @@
         return $result;
     }
 
+    // homestay
+    function getHomeStayById($id) {
+        $db = connect_DB();
+        $query = "SELECT * FROM homestay WHERE (id_homestay= :id_homestay)";
+        $statement = $db->prepare($query);
+        $statement->bindValue(':id_homestay', $id);
+        $statement->execute();
+        $result = $statement->fetchAll();
+        $statement->closeCursor();
+        return $result;
+    }
+    function deleteHomeStayById($id_homestay) {
+        $db = connect_DB();
+        $query = "DELETE FROM homestay WHERE (id_homestay = :id_homestay)";
+        $statement = $db->prepare($query);
+        $statement->bindValue(':id_homestay', $id_homestay);
+        $statement->execute();
+        $result = $statement->fetchAll();
+        $statement->closeCursor();
+        // header("Location: index.php?page=location_list.php");
+        // return '<script type="text/javascript">alert("Successful!")</script>';
+        return $result;
+        // location.reload();
+    }
+
     function insertHomestay($proId, $locateName, $locateImg, $locateAddress, $locateDes, $locatePrice) {
         $db = connect_DB();
         $query = "INSERT INTO homestay(location_id, homestay_name, images, address, descript, price) VALUES (:proId, :locateName, :locateImg, :locateAddress, :locateDescription, :locatePrice)";
@@ -136,9 +161,30 @@
             return $e->getMessage();
         }
     }
+
+    function updateHomestay($id, $proId, $locateName, $locateImg, $locateAddress, $locateDes, $locatePrice) {
+        $db = connect_DB();
+        $query = "UPDATE homestay SET location_id = :proId, homestay_name = :locateName, images = :locateImg, address = :locateAddress, descript = :locateDescription, price = :locatePrice WHERE id_homestay = :id_homestay";
+        try {
+            $statement = $db->prepare($query);
+            $statement->bindValue(':proId', $proId);
+            $statement->bindValue(':locateName', $locateName);
+            $statement->bindValue(':locateImg', $locateImg);
+            $statement->bindValue(':locateAddress', $locateAddress);
+            $statement->bindValue(':locateDescription', $locateDes);
+            $statement->bindValue(':locatePrice', $locatePrice);
+            $statement->bindValue(':id_homestay', $id);
+            $result = $statement->execute();
+            $statement->closeCursor();
+            return $result;
+        } catch(Exception $e) {
+            return $e->getMessage();
+        }
+    } 
+
     function getHomestay() {
         $db = connect_DB();
-        $query = "SELECT * FROM homestay";
+        $query = "SELECT *, location.name FROM homestay LEFT OUTER JOIN location ON homestay.location_id = location.id_location";
         $statement = $db->prepare($query);
         $statement->execute();
         $result = $statement->fetchAll();

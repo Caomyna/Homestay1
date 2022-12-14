@@ -142,10 +142,12 @@ body {
 
 .sidebar .nav-second-level li a {
     padding-left: 37px;
+    font-size: 20px;
 }
 
 .sidebar .nav-third-level li a {
     padding-left: 52px;
+    font-size: 20px;
 }
 
 @media(min-width:768px) {
@@ -283,7 +285,7 @@ table.dataTable thead .sorting:after {
     padding: 6px 0;
     border-radius: 15px;
     text-align: center;
-    font-size: 12px;
+    font-size: 15px;
     line-height: 1.428571429;
 }
 
@@ -292,7 +294,7 @@ table.dataTable thead .sorting:after {
     height: 50px;
     padding: 10px 16px;
     border-radius: 25px;
-    font-size: 18px;
+    font-size: 20px;
     line-height: 1.33;
 }
 
@@ -301,7 +303,7 @@ table.dataTable thead .sorting:after {
     height: 70px;
     padding: 10px 16px;
     border-radius: 35px;
-    font-size: 24px;
+    font-size: 26px;
     line-height: 1.33;
 }
 
@@ -317,7 +319,7 @@ table.dataTable thead .sorting:after {
 }
 
 .huge {
-    font-size: 40px;
+    font-size: 42px;
 }
 
 .panel-green {
@@ -390,7 +392,7 @@ table.dataTable thead .sorting:after {
 .hero-widget .value {
     display: block;
     height: 64px;
-    font-size: 64px;
+    font-size: 66px;
     line-height: 64px;
     font-style: normal;
 }

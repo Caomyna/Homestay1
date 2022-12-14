@@ -1,10 +1,6 @@
 <?php 
     session_start();
     include('model.php');
-
-    // if (isset($_GET['id_location'])) {
-    //     # code...
-    // }
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -69,8 +65,7 @@
                                         <a href="" class="fas fa-user iconuser"></a>
                                     </li>
                                     <li class="nav-item dropdown">
-                                    
-                                        <a href="" class="nav-link" style="font-size:16px; margin-left: 5px;">'.$_SESSION['fullname'].'</a>
+                                        <a href="" class="nav-link" style="font-size:16px; margin-left: 5px; padding-top:10px;">'.$_SESSION['fullname'].'</a>
                                         <ul class="dropdown-content" style="padding: 5px;">
                                             <li><a class="dropdown-item" href="logout.php" style="font-size:15px;">
                                                 <i class="fa fa-sign-out fa-fw"></i>  Logout</a>

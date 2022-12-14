@@ -5,6 +5,7 @@
 <html lang="en">
     <head>
         <?php include('head.php');?>
+        <link rel="stylesheet" href="css/main.css">
     </head>
     <body>
 
@@ -39,7 +40,7 @@
                             <b class="caret"></b>
                         </a>
                         <ul class="dropdown-menu dropdown-user">
-                            <li><a href="logout.php"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
+                            <li><a href="logout.php"><i class="fas fa-sign-out" style="width: 20px;"></i> Logout</a>
                             </li>
                         </ul>
                     </li> 

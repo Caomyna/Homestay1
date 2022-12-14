@@ -34,7 +34,6 @@
             if ($user['role'] == 1){
                 $_SESSION['role'] = 'admin';
                 echo "<script>window.location.href='admin/index.php'</script>";
-                // header("location: admin/index.php");
             }
             else{
                 $_SESSION['role'] = 'user';

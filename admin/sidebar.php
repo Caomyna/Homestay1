@@ -1,22 +1,14 @@
+<head>
+    <link rel="stylesheet" href="css/main.css">
+</head>
 <div class="navbar-default sidebar" role="navigation">
     <div class="sidebar-nav navbar-collapse">
         <ul class="nav" id="side-menu">
-            <li class="sidebar-search">
-                <!-- <div class="input-group custom-search-form">
-                    <input type="text" class="form-control" placeholder="Search...">
-                    <span class="input-group-btn">
-                        <button class="btn btn-primary" type="button">
-                            <i class="fa fa-search"></i>
-                        </button>
-                    </span>
-                </div> -->
-                <!-- /input-group -->
+            <li>
+                <a href="index.php?page=users.php"><i class='fas fa-user-circle' style='font-size:20px'></i> Quản lý người dùng</a>
             </li>
             <li>
-                <a href="index.php?page=users.php"><i class="fa fa-table fa-fw"></i> Quản lý người dùng</a>
-            </li>
-            <li>
-                <a href="index.php?page=location_list.php"><i class="fa fa-bar-chart-o fa-fw active"></i>Quản lý địa điểm</a>
+                <a href="index.php?page=location_list.php"><i class='fas fa-map-marker-alt' style='font-size:20px'></i> Quản lý địa điểm</a>
                 <ul class="nav nav-second-level">
                     <li>
                         <a href="index.php?page=location_add.php">Thêm địa điểm</a>
@@ -29,7 +21,7 @@
             </li>
 
             <li>
-                <a href="index.php?page=homestay_list.php"><i class="fa fa-wrench fa-fw"></i> Quản lý homestay</a>
+                <a href="index.php?page=homestay_list.php"><i class='fas fa-home' style='font-size:20px'></i> Quản lý homestay</a>
                 <ul class="nav nav-second-level">
                     <li>
                         <a href="index.php?page=homestay_add.php">Thêm homestay</a>
@@ -41,9 +33,10 @@
                 <!-- /.nav-second-level -->
             </li>
             <li>
-                <a href="index.php?page=booking.php"><i class="fa fa-edit fa-fw"></i> Quản lý Booking</a>
+                <a href="index.php?page=booking.php"><i class="fas fa-edit" style='font-size:20px'></i> Quản lý Booking</a>
             </li>
 
         </ul>
     </div>
 </div>
+

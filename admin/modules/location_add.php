@@ -17,8 +17,6 @@
             $sql = "SELECT * FROM location WHERE id_location = '$id_location';";
             $resultset = mysqli_query($conn, $sql); 
             $edit = mysqli_fetch_array($resultset, 1);
-            // mysqli_close($conn);
-            // $edit = executeSingleResult($sql);
             $name = $edit['name'];
             $id = $edit['id_location'];
         }

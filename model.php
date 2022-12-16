@@ -38,6 +38,17 @@
         return $result;
     }
 
+    function getLocateIdByName($name) {
+        $db = connect_DB();
+        $query = "SELECT * FROM location WHERE (name= :name)";
+        $statement = $db->prepare($query);
+        $statement->bindValue(':name', $name);
+        $statement->execute();
+        $result = $statement->fetchAll();
+        $statement->closeCursor();
+        return $result[0]['id_location'];
+    }
+
     function getLocateByProId($location_id) {
         $db = connect_DB();
         $query = "SELECT * FROM homestay WHERE (location_id= :location_id)";

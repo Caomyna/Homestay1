@@ -1,13 +1,13 @@
 <?php 
     include 'include/header.php';
+   //  include('model.php');
     include 'admin/db/database.php';
 ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <title>Book</title>
-    <script src="jquery-3.6.1.slim.min.js"></script>
-
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
    <!-- <script type="text/javascript">
       $(document).ready(function($){
          $("#id_location").change(function(event){
@@ -41,7 +41,7 @@
          </div>
          <div class="inputBox">
             <span>SĐT :</span>
-            <input type="number" class="inputSdt" placeholder="Hãy nhập số điện thoại của bạn" name="phone_number" required>
+            <input type="text" class="inputSdt" placeholder="Hãy nhập số điện thoại của bạn" name="phone_number" required>
          </div>
          <div class="inputBox">
             <span>Địa chỉ :</span>
@@ -49,7 +49,7 @@
          </div>
          <div class="inputBox">
             <span>Chọn địa điểm muốn đến :</span>
-            <select name="id_location" id="id_location" class="form-select" style="height:50px; font-size:16px; border:1px solid black; border-radius:20px;">
+            <select id="se_Pro" class="form-select" style="height:50px; font-size:16px; border:1px solid black; border-radius:20px;">
                <option style="font-size:16px;">Chọn Địa điểm</option>
                <?php
                   // Lấy danh sách danh mục sản phẩm từ database
@@ -57,7 +57,7 @@
                   $listLocation = executeResult($sql);
                   foreach($listLocation as $item) : 
                ?> 
-               <option value="<?php echo $item['id_location']; ?>" style="font-size:16px;"><?php echo $item['name']; ?></option>
+               <option value="<?php echo $item['name']; ?>" style="font-size:16px;"><?php echo $item['name']; ?></option>
                <?php
                   endforeach;
                ?>
@@ -65,20 +65,31 @@
          </div>
          <div class="inputBox">
             <span>Chọn Homestay muốn đến :</span>
-            <select name="id_homestay" id="id_homestay" class="form-select" style="height:50px; font-size:16px; border:1px solid black; border-radius:20px;">
+            <select id="listHs">
                <option style="font-size:16px;">Chọn Homestay</option>
-               <?php
-                  // Lấy danh sách danh mục sản phẩm từ database
-                  $sql = "SELECT * FROM homestay";
-                  $listLocation = executeResult($sql);
-                  foreach($listLocation as $item) : 
-               ?> 
-               <option value="<?php echo $item['id_homestay']; ?>" style="font-size:16px;"><?php echo $item['homestay_name']; ?></option>
-               <?php
-                  endforeach;
-               ?>
             </select>
          </div>
+         <script type="text/javascript">
+            var list = document.getElementById('listHs');
+            // var check = document.getElementById('check');
+            $(function() {
+               $('#se_Pro').change(function() {
+                  var sel = $('#se_Pro').val();
+                  $.ajax({
+                     type: "get",
+                     url: "ajax_find.php",
+                     data: {proName: sel},
+                     success: function(data){
+                        // check.innerHTML = data;
+                        list.innerHTML = data;
+                        alert('You choosed a place.');
+                     }
+
+                  });
+               })
+            })
+         </script>
+
          <div class="inputBox">
             <span>Bao nhiêu khách:</span>
             <input type="number" placeholder="Hãy nhập số lượng du khách" name="quantity" required>
@@ -130,4 +141,6 @@
       }
    }
 ?>
+
+
 

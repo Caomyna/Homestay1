@@ -96,7 +96,15 @@ if (isset($_POST['submit'])) {
                 echo "<br>An error occurred while uploading the file.";
             }
         }
-    }elseif (isset($_GET['id_homestay'])) {
+    }elseif (isset($_GET['id'])) {
+        $getlocateImg = getImgById($_GET['id']);
+        $locateImg = $getlocateImg[0]['images'];
+        
+        // $result = updateHomestay($id, $proId, $locateName, $locateImg, $locateAddress, $locateDes, $locatePrice);
+       
+    }
+    
+    if (isset($_GET['id_homestay'])) {
         $homestay_id = $_GET['id_homestay'];
         if (isset($_FILES['multiImg'])) {
             $files = $_FILES['multiImg'];
@@ -113,18 +121,11 @@ if (isset($_POST['submit'])) {
             }
         }
 
-        if (isset($_GET['id'])) {
-            $getlocateImg = getImgById($_GET['id']);
-            $locateImg = $getlocateImg[0]['images'];
-            
-            // $result = updateHomestay($id, $proId, $locateName, $locateImg, $locateAddress, $locateDes, $locatePrice);
-           
-        }
         $query = "UPDATE homestay SET homestay_name ='$locateName', location_id = '$proId', images = '$locateImg', 
         address ='$locateAddress', descript = '$locateDes' , price ='$locatePrice' WHERE id_homestay = $id_homestay;";
         $productEdit = execute($query);
     }
-    else {
+    elseif (!isset($_GET['id_homestay'])) {
         if(isset($_FILES['multiImg'])){
             $files = $_FILES['multiImg'];
             $file_names = $files['name'];

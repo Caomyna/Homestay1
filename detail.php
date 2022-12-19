@@ -28,6 +28,9 @@
 
                 $query = "SELECT * FROM location INNER JOIN homestay ON location.id_location = homestay.location_id WHERE `id_homestay` = '$id_homestay'";
                 $homestay_detail1 = executeResult($query);
+
+                $sql = "SELECT * FROM imagesmall WHERE homestay_id=$id_homestay";
+                $img = executeResult($sql);
             }
             
         ?>
@@ -39,8 +42,14 @@
                     <div class="">
                         <a href="https://pix8.agoda.net/hotelImages/119/11996526/11996526_19123123580086573478.jpg?ca=13&ce=1&s=1024x768" data-lightbox="mygallery"><img class="img-fluid w-100 pb-1" src="images/<?php echo $value['images'];?>" id="MainImg" alt=""></a>
                     </div>                    
-                    <div class="small-img-group">                        
+                    <div class="small-img-group">   
+                        <?php foreach($img as $key): 
+                        ?>                  
                         <div class="small-img-col">
+                            <a href="" data-lightbox="mygallery"><img src="images/<?php echo $key['images']?>" width="100%" class="small-img" alt="architecture"></a>                         
+                        </div>   
+                        <?php endforeach;?>
+                        <!-- <div class="small-img-col">
                             <a href="https://pix8.agoda.net/hotelImages/119/11996526/11996526_20010100300086573634.jpg?ca=9&ce=1&s=1024x768" data-lightbox="mygallery"><img src="https://pix8.agoda.net/hotelImages/119/11996526/11996526_20010100300086573634.jpg?ca=9&ce=1&s=1024x768" width="100%" class="small-img" alt="architecture"></a>                         
                         </div>   
                         <div class="small-img-col">
@@ -48,10 +57,7 @@
                         </div>   
                         <div class="small-img-col">
                             <a href="https://pix8.agoda.net/hotelImages/119/11996526/11996526_20010100300086573634.jpg?ca=9&ce=1&s=1024x768" data-lightbox="mygallery"><img src="https://pix8.agoda.net/hotelImages/119/11996526/11996526_20010100300086573634.jpg?ca=9&ce=1&s=1024x768" width="100%" class="small-img" alt="architecture"></a>                         
-                        </div>   
-                        <div class="small-img-col">
-                            <a href="https://pix8.agoda.net/hotelImages/119/11996526/11996526_20010100300086573634.jpg?ca=9&ce=1&s=1024x768" data-lightbox="mygallery"><img src="https://pix8.agoda.net/hotelImages/119/11996526/11996526_20010100300086573634.jpg?ca=9&ce=1&s=1024x768" width="100%" class="small-img" alt="architecture"></a>                         
-                        </div>                        
+                        </div>                         -->
                     </div>
                 </div>
 
@@ -65,9 +71,9 @@
                     <hr>
                     <h2 class="prices py-2"><?php echo number_format($value['price'])?><sup>đ</sup></del></small></i>&rarr;626,213<sup>đ</sup><i><small style="">/ngày</small></i></h2>
                     <div class="numbers">
-                        <form action="cart.php?action=add" method="post">
-                            <h3 style="font-family: 'Courier New', Courier, monospace; font-size: 25px;">Bạn muốn ở mấy ngày : <input type="number" value="1" name="num[]" min=1></h3>
-                            <button class="buy-btn">Đặt phòng ngay!!!</button>
+                        <form action="book.php" method="">
+                            <h3 style="font-family: 'Courier New', Courier, monospace; font-size: 25px;">Bạn muốn ở mấy ngày <input type="number" value="1" name="num[]" min=1></h3>
+                            <button herf="book.php" class="buy-btn">Đặt phòng ngay!!!</button>
                         </form>
                     </div>
                     <div class="product-brands">
@@ -341,13 +347,13 @@
         </section>
 
         <!-- Phần chữ đánh giá của khách hàng -->
-        <section style="font-size:15px; padding-bottom:0px;">
+        <!-- <section style="font-size:15px; padding-bottom:0px;">
             <hr class="mx-auto">
             <h1 class="text-center" style="font-family: 'Courier New', Courier, monospace; color:coral">Đánh giá của khách hàng</h1>
             <p class="text-center">Dưới đây là một số đánh giá của khách hàng khi họ đã trải nghiệm sản phẩm của chúng tôi.</p>
-        </section>
+        </section> -->
 
-        <section class="danh-gia-khach-hang">            
+        <!-- <section class="danh-gia-khach-hang">            
             <div class="slide-container swiper">
                 <div class="slide-content">
                     <div class="card-wrapper swiper-wrapper">                        
@@ -369,13 +375,13 @@
                 <div class="swiper-button-prev swiper-navBtn"></div>
                 <div class="swiper-pagination"></div>
             </div>
-        </section>
+        </section> -->
 
         <section class="comment-box">
             <h1 class="text-center" style="font-family: 'Courier New', Courier, monospace; color:coral">Bình luận</h1>
             <p class="text-center">Nếu bạn có những thắc mắc gì, hay có những đánh giá gì về sản phẩm của chúng tôi thì hãy gửi nhận xét ở phần phía dưới nhé!!!</p>
             <div class="row">
-                <form action="#" class="frame">
+                <form action="" class="frame">
                     <input type="text" name="full-name" placeholder="Họ và tên...">
                     <input type="email" name="email" placeholder="Địa chỉ email...">
                     <textarea name="comment" placeholder="Hãy viết nhận xét của bạn ở đây..."></textarea>
@@ -460,10 +466,6 @@
             }
         </script>
 
-        <!-- Swiper JS -->
-        <!-- <script src="swiper-bundle.min.js"></script> -->
-
-        <!-- Initialize Swiper -->
         <script>
             var swiper = new Swiper(".slide-content", {
                 slidesPerView: 3,

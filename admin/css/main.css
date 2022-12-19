@@ -6,6 +6,10 @@
     height: 70px;
 }
 
+.navbar .navbar-brand{
+    padding-bottom: 30px;
+}
+
 .navbar .navbar-header a{
     font-size: 28px;
     padding-top: 22px;

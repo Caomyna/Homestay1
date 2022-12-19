@@ -102,13 +102,16 @@
 
         <h1 class="heading-title"> Các Tour <span>NỔI BẬT</span> </h1>
         <div class="box-container">
+            <?php
+                $sql="SELECT * FROM homestay";
 
+            ?>
             <div class="box">
                 <div class="image">
                     <img src="images/nt-1.jpg" alt="">
                 </div>
                 <div class="content">
-                    <h3>Tour Nha Trang</h3>
+                    <h3>Nha Trang</h3>
                     <p>Giá chỉ từ 3.125.000VNĐ</p>
                     <a href="book.php" class="btn">Đặt ngay</a>
                 </div>
@@ -119,7 +122,7 @@
                     <img src="images/ha-2.jpeg" alt="">
                 </div>
                 <div class="content">
-                    <h3>Tour Hội An</h3>
+                    <h3> Hội An</h3>
                     <p>Giá chỉ từ 2.750.000VNĐ</p>
                     <a href="book.php" class="btn">Đặt ngay</a>
                 </div>

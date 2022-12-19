@@ -75,66 +75,43 @@ if (isset($_POST['submit'])) {
     $locateDes = $_POST['locateDes'];
     $locatePrice = $_POST['locatePrice'];
     $locateImg = '';
-    if(isset($_FILES['locateImg']) && !isset($_GET['id'])) {
+
+    if(isset($_FILES['locateImg'])) {
         $dir = "../images/";
         $target_file = $dir.basename($_FILES["locateImg"]["name"]);
         $locateImg = basename($_FILES["locateImg"]["name"]);
-        $allowUpload = true;
-        $allowtypes = array('jpg', 'png', 'jpeg', 'gif', 'jfif');
-        $maxfilesize   = 10000000;
-        if ($_FILES["locateImg"]['error'] != 0) {
-            echo "<br>The uploaded file is error or no file selected.";
-            die;
-        }
-        if ($allowUpload) {
-            //Lưu file vào thư mục được chỉ định trên server
-            if (move_uploaded_file($_FILES["locateImg"]["tmp_name"], $target_file)) {
-                echo "<br>File ". basename( $_FILES["locateImg"]["name"])." uploaded successfully.";
-                echo "The file saved at " . $target_file;
 
-            } else {
-                echo "<br>An error occurred while uploading the file.";
+        if(empty($locateImg)){
+            $locateImg = $pic;
+        }else{
+            $allowUpload = true;
+            $allowtypes = array('jpg', 'png', 'jpeg', 'gif', 'jfif');
+            $maxfilesize   = 10000000;
+            if ($_FILES["locateImg"]['error'] != 0) {
+                echo "<br>The uploaded file is error or no file selected.";
+                die;
             }
-        }
-    }elseif (isset($_GET['id'])) {
-        $getlocateImg = getImgById($_GET['id']);
-        $locateImg = $getlocateImg[0]['images'];
-        
-        // $result = updateHomestay($id, $proId, $locateName, $locateImg, $locateAddress, $locateDes, $locatePrice);
-       
-    }
-    
-    if (isset($_GET['id_homestay'])) {
-        $homestay_id = $_GET['id_homestay'];
-        if (isset($_FILES['multiImg'])) {
-            $files = $_FILES['multiImg'];
-            $file_names = $files['name'];
-            if (!empty($file_names[0])) {
-                $id_homestay = $_GET['id_homestay'];
-                $sql = "DELETE FROM imagesmall WHERE homestay_id = $id_homestay;";
-                $result = execute($sql);
-              
-                foreach ($file_names  as $key => $value) {
-                    $sql = "INSERT INTO `imagesmall`(`homestay_id`, `images`) VALUES ('$id_homestay','$value')";
-                    mysqli_query($conn,$sql);
+            if ($allowUpload) {
+                //Lưu file vào thư mục được chỉ định trên server
+                if (move_uploaded_file($_FILES["locateImg"]["tmp_name"], $target_file)) {
+                    echo "<br>File ". basename( $_FILES["locateImg"]["name"])." uploaded successfully.";
+                    echo "The file saved at " . $target_file;
+
+                } else {
+                    echo "<br>An error occurred while uploading the file.";
                 }
             }
         }
-
-        $query = "UPDATE homestay SET homestay_name ='$locateName', location_id = '$proId', images = '$locateImg', 
-        address ='$locateAddress', descript = '$locateDes' , price ='$locatePrice' WHERE id_homestay = $id_homestay;";
-        $productEdit = execute($query);
     }
-    elseif (!isset($_GET['id_homestay'])) {
-        if(isset($_FILES['multiImg'])){
-            $files = $_FILES['multiImg'];
-            $file_names = $files['name'];
-    
-            foreach ($file_names as $key => $value) {
-                move_uploaded_file($files['tmp_name'][$key], '../images/'.$value);
-            }
+    if(isset($_FILES['multiImg'])){
+        $files = $_FILES['multiImg'];
+        $file_names = $files['name'];
+
+        foreach ($file_names as $key => $value) {
+            move_uploaded_file($files['tmp_name'][$key], '../images/'.$value);
         }
-        // $result = insertHomestay($proId, $locateName, $locateImg, $locateAddress, $locateDes, $locatePrice);
+    }
+    if(!isset($_GET['id'])){
         $conn = mysqli_connect('localhost:3306', 'root', '', 'homestay');
         $sql = "INSERT INTO `homestay`(`homestay_name`, `location_id`, `images`, `address`, `descript`, `price`) 
         VALUES ('$locateName','$proId','$locateImg','$locateAddress','$locateDes','$locatePrice')";
@@ -144,13 +121,19 @@ if (isset($_POST['submit'])) {
             $sql = "INSERT INTO `imagesmall`(`homestay_id`, `images`) VALUES ('$id_hs','$value')";
             mysqli_query($conn,$sql);
         }
+        echo '<script>alert("Thêm thành công!")</script>';
+        echo "<script>window.location.href='index.php?page=homestay_list.php'</script>";
+    }elseif (isset($_GET['id'])) {
+        $id_homestay = $_GET['id'];
+        $query = "UPDATE homestay SET homestay_name ='$locateName', location_id = '$proId', images = '$locateImg', 
+        address ='$locateAddress', descript = '$locateDes' , price ='$locatePrice' WHERE id_homestay = $id_homestay;";
+        $conn = mysqli_connect('localhost:3306', 'root', '', 'homestay'); 
+        mysqli_query($conn, $query);
+        $productEdit = execute($query);
+        echo '<script>alert("Cập nhập thành công!")</script>';
+        echo "<script>window.location.href='index.php?page=homestay_list.php'</script>";
     }
-    if ($result < 0) {
-        echo "Can't make it...............";
-    } else {
-    // echo ('<script type="text/javascript">alert("Must fill all information")</script>')
-        echo "Can't make it";
-    }
-    echo "<script>window.location.href='index.php?page=homestay_list.php'</script>";
+
 }
+
 ?>

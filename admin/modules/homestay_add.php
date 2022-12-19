@@ -97,13 +97,30 @@ if (isset($_POST['submit'])) {
             }
         }
     }
+
     if (isset($_GET['id'])) {
         $getlocateImg = getImgById($_GET['id']);
         $locateImg = $getlocateImg[0]['images'];
         $result = updateHomestay($id, $proId, $locateName, $locateImg, $locateAddress, $locateDes, $locatePrice);
     }
     else {
-        $result = insertHomestay($proId, $locateName, $locateImg, $locateAddress, $locateDes, $locatePrice);
+        if(isset($_FILES['multiImg'])){
+            $files = $_FILES['multiImg'];
+            $file_names = $files['name'];
+    
+            foreach ($file_names as $key => $value) {
+                move_uploaded_file($files['tmp_name'][$key], '../images/'.$value);
+            }
+        }
+        // $result = insertHomestay($proId, $locateName, $locateImg, $locateAddress, $locateDes, $locatePrice);
+        $conn = mysqli_connect('localhost:3306', 'root', '', 'homestay');
+        $sql = "INSERT INTO `homestay`(`homestay_name`, `location_id`, `images`, `address`, `descript`, `price`) VALUES ('$locateName','$proId','$locateImg','$locateAddress','$locateDes','$locatePrice')";
+        $result = mysqli_query($conn,$sql);
+        $id_hs = mysqli_insert_id( $conn);
+        foreach ($file_names  as $key => $value) {
+            $sql = "INSERT INTO `imagesmall`(`homestay_id`, `images`) VALUES ('$id_hs','$value')";
+            mysqli_query($conn,$sql);
+        }
     }
     if ($result < 0) {
         echo "Can't make it...............";

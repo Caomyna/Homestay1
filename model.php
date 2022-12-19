@@ -166,7 +166,6 @@
             $statement->bindValue(':locateDescription', $locateDes);
             $statement->bindValue(':locatePrice', $locatePrice);
             $result = $statement->execute();
-            $statement->closeCursor();
             return $result;
         } catch(Exception $e) {
             return $e->getMessage();
@@ -214,4 +213,18 @@
         return $result;
     }
 
+    function insertImgsmall($homestay_id, $images) {
+        $db = connect_DB();
+        $query = "INSERT INTO imagesmall(homestay_id, images) VALUES (:homestay_id, :images)";
+        try {
+            $statement = $db->prepare($query);
+            $statement->bindValue(':homestay_id', $homestay_id);
+            $statement->bindValue(':images', $images);
+            $result = $statement->execute();
+            $statement->closeCursor();
+            return $result;
+        } catch(Exception $e) {
+            return $e->getMessage();
+        }
+    }
 ?>

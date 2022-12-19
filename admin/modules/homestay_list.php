@@ -28,6 +28,7 @@
                 <?php if (isset($_GET['id'])) {
                     $id = $_GET['id'];
                     deleteHomeStayById($id);
+                    echo "<script>window.location.href='index.php?page=homestay_list.php'</script>";
                 } ?>
                 <?php  
                     $listH = getHomestay();

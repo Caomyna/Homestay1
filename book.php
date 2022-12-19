@@ -143,14 +143,16 @@
          $arrival_date = $_POST['arrival_date'];
          $leave_date = $_POST['leave_date'];
          $payment = $_POST['ptThToan'];
+         $conn = mysqli_connect('localhost:3306', 'root', '', 'homestay');
          $sql = "INSERT INTO booking (users_id, homestay_id, fullname, phone_number, address, quantity, arrival_date, leave_date, payment) 
          VALUES ('$users_id', '$homestay','$fullname', '$phone_number', '$address', ' $quantity', '$arrival_date', '$leave_date', '$payment')";
-         $bookingAdd = execute($sql);
+         $bookingAdd = mysqli_query($conn,$sql);
          
          // $book_id = $conn->insert_id;
-         // $sql2 = "INSERT INTO book_detail (book_id) 
-         // VALUES ('$book_id')";
-         // $bookdetail = execute($sql2);
+         $book_id = mysqli_insert_id($conn);
+         // var_dump($book_id); exit;
+         $sql2 = "INSERT INTO book_detail (book_id, homestay_id) VALUES ('$book_id', '$homestay')";
+         $bookdetail = execute($sql2);
          echo '<script>alert("Đặt vé thành công !")</script>';        
          // echo "<script>window.location.href='login.php'</script>";
       }else {

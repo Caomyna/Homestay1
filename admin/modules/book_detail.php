@@ -6,7 +6,7 @@
         $book = executeResult($sql);
 
         $query = "SELECT book_detail.status, book_detail.total_money, book_detail.book_id, homestay.homestay_name, homestay.images, homestay.price
-        FROM book_detail JOIN homestay WHERE book_detail.homestay_id = homestay.id_homestay";
+        FROM book_detail INNER JOIN homestay ON book_detail.homestay_id = homestay.id_homestay WHERE book_detail.book_id=$id_book";
         $bookDetail = executeResult($query);
 
         // $idHs=$bookDetail['id_homestay'];

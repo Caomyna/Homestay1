@@ -35,8 +35,8 @@
                          echo "<script>window.location.href='index.php?page=booking.php'</script>";
                      }
                     // Lấy danh sách danh mục sản phẩm từ database
-                    $sql = 'SELECT booking.id_book, booking.fullname, booking.phone_number, booking.quantity, booking.arrival_date, booking.leave_date, homestay.homestay_name
-                    FROM booking LEFT OUTER JOIN homestay ON booking.homestay_id = homestay.id_homestay';
+                    $sql = "SELECT booking.id_book, booking.fullname, booking.phone_number, booking.quantity, booking.arrival_date, booking.leave_date, homestay.homestay_name
+                    FROM booking LEFT OUTER JOIN homestay ON booking.homestay_id = homestay.id_homestay";
                     $listBooking = executeResult($sql);
                     $index = 1;
                     foreach($listBooking as $item) :

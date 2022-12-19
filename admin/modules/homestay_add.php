@@ -96,12 +96,33 @@ if (isset($_POST['submit'])) {
                 echo "<br>An error occurred while uploading the file.";
             }
         }
-    }
+    }elseif (isset($_GET['id_homestay'])) {
+        $homestay_id = $_GET['id_homestay'];
+        if (isset($_FILES['multiImg'])) {
+            $files = $_FILES['multiImg'];
+            $file_names = $files['name'];
+            if (!empty($file_names[0])) {
+                $id_homestay = $_GET['id_homestay'];
+                $sql = "DELETE FROM imagesmall WHERE homestay_id = $id_homestay;";
+                $result = execute($sql);
+              
+                foreach ($file_names  as $key => $value) {
+                    $sql = "INSERT INTO `imagesmall`(`homestay_id`, `images`) VALUES ('$id_homestay','$value')";
+                    mysqli_query($conn,$sql);
+                }
+            }
+        }
 
-    if (isset($_GET['id'])) {
-        $getlocateImg = getImgById($_GET['id']);
-        $locateImg = $getlocateImg[0]['images'];
-        $result = updateHomestay($id, $proId, $locateName, $locateImg, $locateAddress, $locateDes, $locatePrice);
+        if (isset($_GET['id'])) {
+            $getlocateImg = getImgById($_GET['id']);
+            $locateImg = $getlocateImg[0]['images'];
+            
+            // $result = updateHomestay($id, $proId, $locateName, $locateImg, $locateAddress, $locateDes, $locatePrice);
+           
+        }
+        $query = "UPDATE homestay SET homestay_name ='$locateName', location_id = '$proId', images = '$locateImg', 
+        address ='$locateAddress', descript = '$locateDes' , price ='$locatePrice' WHERE id_homestay = $id_homestay;";
+        $productEdit = execute($query);
     }
     else {
         if(isset($_FILES['multiImg'])){
@@ -114,7 +135,8 @@ if (isset($_POST['submit'])) {
         }
         // $result = insertHomestay($proId, $locateName, $locateImg, $locateAddress, $locateDes, $locatePrice);
         $conn = mysqli_connect('localhost:3306', 'root', '', 'homestay');
-        $sql = "INSERT INTO `homestay`(`homestay_name`, `location_id`, `images`, `address`, `descript`, `price`) VALUES ('$locateName','$proId','$locateImg','$locateAddress','$locateDes','$locatePrice')";
+        $sql = "INSERT INTO `homestay`(`homestay_name`, `location_id`, `images`, `address`, `descript`, `price`) 
+        VALUES ('$locateName','$proId','$locateImg','$locateAddress','$locateDes','$locatePrice')";
         $result = mysqli_query($conn,$sql);
         $id_hs = mysqli_insert_id( $conn);
         foreach ($file_names  as $key => $value) {

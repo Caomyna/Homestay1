@@ -55,14 +55,17 @@
             <input type="" name="locatePrice" class="form-control" value="<?php echo($price) ?>">
         </div>
         <div class="form-group">
-            <label for="locateImg">Hình ảnh:</label>
+            <label for="locateImg">Hình ảnh</label>
             <input type="file" name="locateImg" id="locateImg" enctype="multipart/form-data" class="form-control" value="<?php echo($pic) ?>">
             <img src="../images/<?php echo($pic) ?>" alt="" style="max-width: 300px;">
+        </div>
+        <div class="form-group">
+            <label class="Imgsmall">Ảnh mô tả</label>
+            <input name ="multiImg[]" type="file" class="form-control" multiple="multiple">
         </div>
         <button type="submit" class="btn btn-success" name="submit">Lưu</button>
     </form>
 </div>
-
 
 <?php 
 if (isset($_POST['submit'])) {
@@ -72,7 +75,7 @@ if (isset($_POST['submit'])) {
     $locateDes = $_POST['locateDes'];
     $locatePrice = $_POST['locatePrice'];
     $locateImg = '';
-    if(isset($_FILES['locateImg'])) {
+    if(isset($_FILES['locateImg']) && !isset($_GET['id'])) {
         $dir = "../images/";
         $target_file = $dir.basename($_FILES["locateImg"]["name"]);
         $locateImg = basename($_FILES["locateImg"]["name"]);
@@ -95,6 +98,8 @@ if (isset($_POST['submit'])) {
         }
     }
     if (isset($_GET['id'])) {
+        $getlocateImg = getImgById($_GET['id']);
+        $locateImg = $getlocateImg[0]['images'];
         $result = updateHomestay($id, $proId, $locateName, $locateImg, $locateAddress, $locateDes, $locatePrice);
     }
     else {
@@ -106,6 +111,6 @@ if (isset($_POST['submit'])) {
     // echo ('<script type="text/javascript">alert("Must fill all information")</script>')
         echo "Can't make it";
     }
+    echo "<script>window.location.href='index.php?page=homestay_list.php'</script>";
 }
-// 
-// 
+?>

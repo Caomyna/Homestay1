@@ -44,7 +44,8 @@
                            <p><?php echo($l['descript']) ?></p>
                         </div>
                         <div class="divbtn">
-                           <a href="book.php" class="btn">Đặt ngay</a>
+                           <a href='detail.php?id_homestay=<?php echo $l['id_homestay']?>' class="btn">Chi tiết</a>
+                           <!-- <a href="book.php" class="btn">Đặt ngay</a> -->
                         </div>
                      </div>
                   <?php } ?>

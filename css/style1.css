@@ -11,7 +11,6 @@
 
 body{
     font-family: 'Poppins', sans-serif;
-    padding: 0;
     /* margin-top: 35px; */
 }
 
@@ -150,6 +149,7 @@ hr{
 }
 
 /*Homestay detail*/
+
 .small-img-group{
     display: flex;
     justify-content: space-between;
@@ -189,7 +189,7 @@ hr{
     background: var(--main-color);
     opacity: 1;
     transition: 0.4s all;
-    /* margin-left: 35%; */
+    font-size: 15px;
 }
 
 #information .name-homestay{
@@ -266,9 +266,9 @@ hr{
     border-radius: 10%;
     cursor: pointer;
 }
-/* .product-detail-under-content-title{
-    
-} */
+.product-detail-under-content{
+    font-size: 15px;
+}
 .product-detail-under-content-title-item{
     padding: 3px;
     cursor: pointer;
@@ -283,11 +283,11 @@ hr{
 }
 .product-detail-under-content-title-item p{
     font-family: var(--main-text-font);
-    font-size: 19px;
+    font-size: 15px;
 }
 .product-detail-under-content{
     font-family: var(--main-text-font);
-    font-size: 17px;
+    font-size: 15px;
 }
 .product-detail-under-content-vanchuyen{
     display: none;
@@ -301,10 +301,22 @@ hr{
 .activeB{
     display: none;
 }
+
+
 .product-detail-under-content-vanchuyen .logo-chuyen-phat .row{
     display: flex;
     justify-content: flex-start;
     flex-wrap: wrap;
+}
+
+.product-detail-under-content-big .flex-row{
+    display: flex;
+    justify-content:center;
+    flex-wrap: wrap;
+}
+
+.product-detail-under-content-big .flex-row p{
+    font-size: 15px;
 }
 
 /* Detail Table */
@@ -460,7 +472,7 @@ meta {
 
 /* Comment */
 .comment-box{
-    /* border: 2px solid black; */
+    font-size: 15px;
     background-color: #efefef;
     margin-bottom: 50px;
 }
@@ -537,7 +549,7 @@ meta {
 
  /* related product */
 
- .product img{
+.product img{
     width:80%;
     height: auto;
     box-sizing:border-box;

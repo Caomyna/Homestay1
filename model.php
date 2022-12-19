@@ -203,4 +203,15 @@
         return $result;
     }
 
+    function getImgById($id) {
+        $db = connect_DB();
+        $query = "SELECT * FROM homestay WHERE (id_homestay = :id_homestay)";
+        $statement = $db->prepare($query);
+        $statement->bindValue(':id_homestay', $id);
+        $statement->execute();
+        $result = $statement->fetchAll();
+        $statement->closeCursor();
+        return $result;
+    }
+
 ?>

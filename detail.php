@@ -1,11 +1,14 @@
-<?php include('include/header.php');?>
+<?php 
+    include('include/header.php');
+    include('admin/db/database.php'); 
+?>
 <!DOCTYPE html>
 <html lang="en">
     <head>
         <title>Homestays details</title>
 
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-        <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+        <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5    .10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
 
         <!-- Link Swiper's CSS -->
         <!-- <link rel="stylesheet" href="swiper-bundle.min.css"> -->
@@ -16,11 +19,26 @@
     </head>
     <body>
         <!--NAVIGATION-->
-        
-        <section class="container sproduct">
+        <?php  
+            if(isset($_GET["id_homestay"]))
+            {
+                $id_homestay = $_GET['id_homestay'];
+                $sql = "SELECT * FROM `homestay` WHERE `id_homestay` = '$id_homestay';";                
+                $homestay_detail = executeResult($sql);
+
+                $query = "SELECT * FROM location INNER JOIN homestay ON location.id_location = homestay.location_id WHERE `id_homestay` = '$id_homestay'";
+                $homestay_detail1 = executeResult($query);
+            }
+            
+        ?>
+        <section class="container sproduct" style="padding: 0px;">
             <div class="row mt-5">
-                <div class="col-lg-7 col-md-12 col-12">                    
-                    <a href="https://pix8.agoda.net/hotelImages/119/11996526/11996526_19123123580086573478.jpg?ca=13&ce=1&s=1024x768" data-lightbox="mygallery"><img class="img-fluid w-100 pb-1" src="https://pix8.agoda.net/hotelImages/119/11996526/11996526_19123123580086573478.jpg?ca=13&ce=1&s=1024x768" id="MainImg" alt=""></a>
+                <?php foreach($homestay_detail as $key => $value): 
+                ?>
+                <div class="col-lg-6 col-md-12 col-12">
+                    <div class="">
+                        <a href="https://pix8.agoda.net/hotelImages/119/11996526/11996526_19123123580086573478.jpg?ca=13&ce=1&s=1024x768" data-lightbox="mygallery"><img class="img-fluid w-100 pb-1" src="images/<?php echo $value['images'];?>" id="MainImg" alt=""></a>
+                    </div>                    
                     <div class="small-img-group">                        
                         <div class="small-img-col">
                             <a href="https://pix8.agoda.net/hotelImages/119/11996526/11996526_20010100300086573634.jpg?ca=9&ce=1&s=1024x768" data-lightbox="mygallery"><img src="https://pix8.agoda.net/hotelImages/119/11996526/11996526_20010100300086573634.jpg?ca=9&ce=1&s=1024x768" width="100%" class="small-img" alt="architecture"></a>                         
@@ -37,12 +55,15 @@
                     </div>
                 </div>
 
-                <div id="information" class="col-lg-7 col-md-12 col-12">
-                    <h6>Package / Hoi An</h6>
-                    <h3 class="name-homestay py-3">Santorin Villa Hội An </h3>
-                    <h6><i class="fas fa-map-marked-alt"></i>  202 Nguyen Duy Hieu, Cam Chau, Hội An, Vietnam, 560000</h6>
+                <div id="information" class="col-lg-6 col-md-12 col-12">
+                    <?php foreach($homestay_detail1 as $key1 => $value1): 
+                    ?>
+                    <h6>Package / <?php echo($value1['name']) ?></h6>
+                    <?php endforeach?>
+                    <h3 class="name-homestay py-3"><?php echo $value['homestay_name'];?> </h3>
+                    <h6><i class="fas fa-map-marked-alt"></i>  <?php echo $value['address'];?></h6>
                     <hr>
-                    <h2 class="prices py-2"><i><small><del>1,565,069<sup>đ</sup></del></small></i>&rarr;626,213<sup>đ</sup><i><small style="">/ngày</small></i></h2>
+                    <h2 class="prices py-2"><?php echo number_format($value['price'])?><sup>đ</sup></del></small></i>&rarr;626,213<sup>đ</sup><i><small style="">/ngày</small></i></h2>
                     <div class="numbers">
                         <form action="cart.php?action=add" method="post">
                             <h3 style="font-family: 'Courier New', Courier, monospace; font-size: 25px;">Bạn muốn ở mấy ngày : <input type="number" value="1" name="num[]" min=1></h3>
@@ -116,11 +137,12 @@
                     
                 </div>
             </div>
+            <?php endforeach?>
         </section>
 
         <section class="container information_product my-5 pt-5">
             <div class="product-detail-under">
-                <div class="product-detail-under-top">
+                <div class="product-detail-under-top" style="font-size:22px; width:300px;">
                     Thông tin homestay
                 </div>
                 <div class="product-detail-under-content-big">
@@ -149,19 +171,12 @@
                     </div>
                     <div class="product-detail-under-content">
                         <div class="product-detail-under-content-chitiet">
-                            <div class="row m-0 py-2">                                
+                            <div class="row m-0 py-2">
+                                <?php foreach($homestay_detail as $key => $value): ?>                                 
                                 <div class="col-lg-6 col-md-6">
-                                    <b>Santorin Villa Hoi An</b>, tọa lạc tại trung tâm thành phố Hội An, là lựa chọn nổi 
-                                    tiếng dành cho khách du lịch. Với vị trí thuận lợi, khách sạn dễ dàng tiếp cận 
-                                    những điểm tham quan du lịch nổi tiếng của thành phố.<br>
-                                    Mọi nỗ lực đều nhằm mục đích khiến cho du khách hài lòng bằng cách cung cấp những 
-                                    dịch vụ và tiện nghi tốt nhất. Cập nhật mọi thông tin liên lạc của bạn một cách dễ
-                                    dàng với Wi-Fi miễn phí của khách sạn. <br>
-                                    Được thiết kế để tạo sự thoải mái, tất cả các phòng nghỉ đều cung cấp một loạt 
-                                    tiện nghi nhằm đảm bảo quý khách có một đêm thư thái. Để tạo sự thoải mái cho quý 
-                                    khách, một số phòng tại khách sạn được trang bị dịch vụ bộ khăn trải giường, rèm 
-                                    cản sáng và máy điều hòa.
+                                    <?php echo $value['descript']?>
                                 </div>
+                                <?php endforeach?>
                                 
                                 <div class="col-lg-6 col-md-6">
                                     <div class="DetailsTable__Container-sc-6kksbc-0 kmjgzn">
@@ -282,15 +297,15 @@
                                     <p>Simple Watch cung cấp các phương thức thanh toán an toàn và bạn có thể chọn thanh toán bằng Visa, Mastercard, JCB, thanh toán qua tiền mặt, internet banking hoặc trả góp 0%.</p>
                                     <div class="logo-chuyen-phat">
                                         <div class="row m-0 py-0">
-                                            <img class="img-lazyload icon-visa" data-src="" alt="" style="opacity: 1;" src="images/Phương thức thanh toán/visa.svg">
+                                            <img class="img-lazyload icon-visa" data-src="" alt="" style="max-width: 100px;" src="images/Phương thức thanh toán/visa.svg">
                                             &ensp;
-                                            <img class="img-lazyload icon-visa" data-src="" alt="" style="opacity: 1;" src="images/Phương thức thanh toán/mastercard.svg">
+                                            <img class="img-lazyload icon-visa" data-src="" alt="" style="max-width: 100px;" src="images/Phương thức thanh toán/mastercard.svg">
                                             &ensp;
-                                            <img class="img-lazyload icon-visa" data-src="" alt="" style="opacity: 1;" src="images/Phương thức thanh toán/jcb.svg">
+                                            <img class="img-lazyload icon-visa" data-src="" alt="" style="max-width: 100px;" src="images/Phương thức thanh toán/jcb.svg">
                                             &ensp;                                                                                                                        
-                                            <img class="img-lazyload icon-visa" data-src="" alt="" style="opacity: 1;" src="images/Phương thức thanh toán/thanhtoantienmat.png">
-                                            <img class="img-lazyload icon-visa" data-src="" alt="" style="opacity: 1;" src="images/Phương thức thanh toán/internetBanking.png">
-                                            <img class="img-lazyload icon-visa" data-src="" alt="" style="opacity: 1;" src="images/Phương thức thanh toán/tragop.png">
+                                            <img class="img-lazyload icon-visa" data-src="" alt="" style="max-width: 100px;" src="images/Phương thức thanh toán/thanhtoantienmat.png">
+                                            <img class="img-lazyload icon-visa" data-src="" alt="" style="max-width: 100px;" src="images/Phương thức thanh toán/internetBanking.png">
+                                            <img class="img-lazyload icon-visa" data-src="" alt="" style="max-width: 100px;" src="images/Phương thức thanh toán/tragop.png">
                                         </div>
                                     </div>                                                                                    
                                     
@@ -326,7 +341,7 @@
         </section>
 
         <!-- Phần chữ đánh giá của khách hàng -->
-        <section>
+        <section style="font-size:15px; padding-bottom:0px;">
             <hr class="mx-auto">
             <h1 class="text-center" style="font-family: 'Courier New', Courier, monospace; color:coral">Đánh giá của khách hàng</h1>
             <p class="text-center">Dưới đây là một số đánh giá của khách hàng khi họ đã trải nghiệm sản phẩm của chúng tôi.</p>
@@ -369,48 +384,7 @@
             </div>
             
         </section>
-<!-- 
-        <section class="footer">
 
-            <div class="box-container">
-
-                <div class="box">
-                    <h3>Quick links</h3>
-                    <a href="home.php"> <i class="fas fa-angle-right"></i> Trang chủ</a>
-                    <a href="about.php"> <i class="fas fa-angle-right"></i> Giới thiệu</a>
-                    <a href="package.php"> <i class="fas fa-angle-right"></i>Sản phẩm</a>
-                    <a href="book.php"> <i class="fas fa-angle-right"></i> Liên hệ</a>
-                </div>
-
-                <div class="box">
-                    <h3>Extra links</h3>
-                    <a href="home.php"> <i class="fas fa-angle-right"></i> Điều khoản sử dụng</a>
-                    <a href="about.php"> <i class="fas fa-angle-right"></i> Chính sách bảo hành</a>
-                </div>
-
-                <div class="box">
-                    <h3>Contact Info</h3>
-                    <a href="#"> <i class="fas fa-phone"></i> +123-456-7890 </a>
-                    <a href="#"> <i class="fas fa-phone"></i> +111-222-3333 </a>
-                    <a href="#"> <i class="fas fa-envelope"></i> nwatch@gmail.com </a>
-                    <a href="#"> <i class="fas fa-map"></i> Đà Nẵng, Việt Nam </a>
-                </div>
-
-                <div class="box">
-                    <h3>Follow us</h3>
-                    <a href="#"> <i class="fab fa-facebook-f"></i> facebook </a>
-                    <a href="#"> <i class="fab fa-twitter"></i> twitter </a>
-                    <a href="#"> <i class="fab fa-instagram"></i> instagram </a>
-                    <a href="#"> <i class="fab fa-linkedin"></i> linkedin </a>
-                </div>
-
-                <div class="box">
-                    <img src="images/Simple.png" alt="">
-                    <p class="pt-3">LEARN HOW TO MAKE RESPONSIVE ECOMMERCE WEBSITE USING HTML CSS AND JAVASCRIPT. IN THIS.</p>                   
-                </div>
-            </div>
-
-        </section> -->
         <?php include('include/footer.php');?>
 
         <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>

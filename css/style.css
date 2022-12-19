@@ -647,8 +647,13 @@ section{
 .booking .book-form .btn{
    margin-top: 2rem;
    border-radius: 20px;
-   /* background-color: var(--main-color); */
 }
+
+.booking .ptThToan{
+   padding-right: 20px;
+}
+
+
 
 .heading-title{
    text-align: center;

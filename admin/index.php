@@ -40,7 +40,7 @@
                             <b class="caret"></b>
                         </a>
                         <ul class="dropdown-menu dropdown-user">
-                            <li><a href="logout.php"><i class="fas fa-sign-out" style="width: 20px;"></i> Logout</a>
+                            <li><a href="logout.php"><i class='fas fa-sign-out-alt' style='font-size:16px'></i>  Logout</a>
                             </li>
                         </ul>
                     </li> 

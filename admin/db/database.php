@@ -31,5 +31,6 @@
 
         return $row;
     }
+    $conn = mysqli_connect(HOST, USERNAME, PASSWORD, DATABASE);
 
 ?>

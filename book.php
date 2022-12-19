@@ -1,6 +1,5 @@
 <?php 
     include 'include/header.php';
-   //  include('model.php');
     include 'admin/db/database.php';
 ?>
 <!DOCTYPE html>
@@ -8,16 +7,6 @@
 <head>
     <title>Book</title>
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-   <!-- <script type="text/javascript">
-      $(document).ready(function($){
-         $("#id_location").change(function(event){
-            $id_location = $("#id_location").val();
-            $.post("data.php",{"id_location" :id_location}, function(data){
-               $("#id_homestay").html(data);
-            })
-         });
-      });
-   </script> -->
   
 </head>
 <body>
@@ -65,30 +54,41 @@
          </div>
          <div class="inputBox">
             <span>Chọn Homestay muốn đến :</span>
+            <input type="text" value="" name="idHomestay" id="idHomestay" class="d-none">
+            <!-- <h1 id="idHomestay">Here</h1> -->
             <select id="listHs">
-               <option style="font-size:16px;">Chọn Homestay</option>
+               <option value="id_homestay" style="font-size:16px;">Chọn Homestay</option>
+               <script type="text/javascript">
+                  var list = document.getElementById('listHs');
+                  // var check = document.getElementById('check');
+                  $(function() {
+                     $('#se_Pro').change(function() {
+                        var sel = $('#se_Pro').val();
+                        $.ajax({
+                           type: "get",
+                           url: "ajax_find.php",
+                           data: {proName: sel},
+                           success: function(data){
+                              // check.innerHTML = data;
+                              list.innerHTML = data;
+                              alert('You choosed a place.');
+                           }
+
+                        });
+                     })
+                  })
+                  var se = document.getElementById('listHs');
+                  var pl = document.getElementById('idHomestay');
+                  $(function() {
+                     $('#listHs').change(function() {
+                     var id = $('#listHs').val();
+                     pl.setAttribute('value', id);
+                     // pl.innerHTML = id;
+                     })
+                  })
+               </script>
             </select>
          </div>
-         <script type="text/javascript">
-            var list = document.getElementById('listHs');
-            // var check = document.getElementById('check');
-            $(function() {
-               $('#se_Pro').change(function() {
-                  var sel = $('#se_Pro').val();
-                  $.ajax({
-                     type: "get",
-                     url: "ajax_find.php",
-                     data: {proName: sel},
-                     success: function(data){
-                        // check.innerHTML = data;
-                        list.innerHTML = data;
-                        alert('You choosed a place.');
-                     }
-
-                  });
-               })
-            })
-         </script>
 
          <div class="inputBox">
             <span>Bao nhiêu khách:</span>
@@ -104,7 +104,18 @@
          </div>
       </div>
 
-      <input type="submit" value="Đặt vé" class="btn" name="send">
+      <div name="payment" style="font-size: 16px; padding-top:15px;">
+         <span><b>Phương thức thanh toán</b></span>
+         <div>
+            <input type="radio" name="ptThToan" value="AliPay" checked="checked"> AliPay
+            <input type="radio" name="ptThToan" value="Paypal"> Paypal
+            <input type="radio" name="ptThToan" value="Banking"> Banking
+            <input type="radio" name="ptThToan" value="Bằng tiền mặt"> Bằng tiền mặt
+         </div>
+         
+      </div>
+
+      <input type="submit" value="Book" class="btn" name="send">
 
    </form>
 
@@ -120,18 +131,26 @@
       if(!isset($_SESSION['fullname'])){
          echo "<script>window.location.href='login.php'</script>";
       }elseif(isset($_SESSION['fullname'])){
+         if (empty($_POST['fullname'])||empty($_POST['phone_number'])||empty($_POST['address'])) {
+            echo '<script>alert("Bạn chưa nhập đầy đủ thông tin!!")</script>';
+         }
          $users_id = $_SESSION['id_users'];
          $fullname = $_POST['fullname'];
          $phone_number = $_POST['phone_number'];
          $address = $_POST['address'];
-         // $location = $_POST['id_location'];
-         $homestay = $_POST['id_homestay'];
+         $homestay = $_POST['idHomestay'];
          $quantity = $_POST['quantity'];
          $arrival_date = $_POST['arrival_date'];
          $leave_date = $_POST['leave_date'];
-         $sql = "INSERT INTO booking (users_id, homestay_id, fullname, phone_number, address, quantity, arrival_date, leave_date) 
-         VALUES ('$users_id', '$homestay','$fullname', '$phone_number', '$address', ' $quantity', '$arrival_date', '$leave_date')";
+         $payment = $_POST['ptThToan'];
+         $sql = "INSERT INTO booking (users_id, homestay_id, fullname, phone_number, address, quantity, arrival_date, leave_date, payment) 
+         VALUES ('$users_id', '$homestay','$fullname', '$phone_number', '$address', ' $quantity', '$arrival_date', '$leave_date', '$payment')";
          $bookingAdd = execute($sql);
+         
+         // $book_id = $conn->insert_id;
+         // $sql2 = "INSERT INTO book_detail (book_id) 
+         // VALUES ('$book_id')";
+         // $bookdetail = execute($sql2);
          echo '<script>alert("Đặt vé thành công !")</script>';        
          // echo "<script>window.location.href='login.php'</script>";
       }else {

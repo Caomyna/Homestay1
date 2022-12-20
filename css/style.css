@@ -235,7 +235,7 @@ section{
 .home .swiper-button-next:hover,
 .home .swiper-button-prev:hover{
    background: var(--main-color);
-   color:var(--white);
+   color:var(--red);
 }
 
 .home .swiper-button-next::after,
@@ -374,7 +374,7 @@ section{
 .home-offer .content h3{
    font-size: 3.5rem;
    text-transform: uppercase;
-   color:var(--black);
+   color: var(--black);
 }
 
 .home-offer .content p{

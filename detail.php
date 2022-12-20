@@ -69,7 +69,7 @@
                     <h3 class="name-homestay py-3"><?php echo $value['homestay_name'];?> </h3>
                     <h6><i class="fas fa-map-marked-alt"></i>  <?php echo $value['address'];?></h6>
                     <hr>
-                    <h2 class="prices py-2"><?php echo number_format($value['price'])?><sup>đ</sup></del></small></i>&rarr;626,213<sup>đ</sup><i><small style="">/ngày</small></i></h2>
+                    <h2 class="prices py-2"><?php echo number_format($value['price'])?><sup>đ</sup></del></small></i><sup>đ</sup><i><small style="">/ngày</small></i></h2>
                     <div class="numbers">
                         <form action="book.php" method="">
                             <h3 style="font-family: 'Courier New', Courier, monospace; font-size: 25px;">Bạn muốn ở mấy ngày <input type="number" value="1" name="num[]" min=1></h3>

@@ -5,10 +5,10 @@
     <div class="sidebar-nav navbar-collapse">
         <ul class="nav" id="side-menu">
             <li>
-                <a href="index.php?page=users.php"><i class='fas fa-user-circle' style='font-size:20px'></i> Quản lý người dùng</a>
+                <a href="index.php?page=users.php" style="font-size:15px;"><i class='fas fa-user-circle' style='font-size:20px'></i> Quản lý người dùng</a>
             </li>
             <li>
-                <a href="index.php?page=location_list.php"><i class='fas fa-map-marker-alt' style='font-size:20px'></i> Quản lý địa điểm</a>
+                <a href="index.php?page=location_list.php" style="font-size:15px;"><i class='fas fa-map-marker-alt' style='font-size:20px'></i> Quản lý địa điểm</a>
                 <ul class="nav nav-second-level">
                     <li>
                         <a href="index.php?page=location_add.php" style="font-size:15px;">Thêm địa điểm</a>
@@ -21,7 +21,7 @@
             </li>
 
             <li>
-                <a href="index.php?page=homestay_list.php"><i class='fas fa-home' style='font-size:20px'></i> Quản lý homestay</a>
+                <a href="index.php?page=homestay_list.php" style="font-size:15px;"><i class='fas fa-home' style='font-size:20px'></i> Quản lý homestay</a>
                 <ul class="nav nav-second-level">
                     <li>
                         <a href="index.php?page=homestay_add.php" style="font-size:15px;">Thêm homestay</a>
@@ -33,10 +33,10 @@
                 <!-- /.nav-second-level -->
             </li>
             <li>
-                <a href="index.php?page=booking.php"><i class="fas fa-edit" style='font-size:20px'></i> Quản lý Booking</a>
+                <a href="index.php?page=booking.php" style="font-size:15px;"><i class="fas fa-edit" style='font-size:20px'></i> Quản lý Booking</a>
             </li>
             <li>
-                <a href="index.php?page=Imgsmall.php"><i class='fas fa-camera' style='font-size:20px'></i> Quản lý hình ảnh</a>
+                <a href="index.php?page=Imgsmall.php" style="font-size:15px;"><i class='fas fa-camera' style='font-size:20px'></i> Quản lý hình ảnh</a>
             </li>
         </ul>
     </div>

@@ -19,7 +19,7 @@
             <div class="swiper-slide slide" style="background:url(images/home-slide-4.jpg)">
                 <div class="content">
                     <h3>Trải nghiệm du lịch đáng nhớ </h3>
-                    <span>Tour Hạ Long</span>
+                    <span style="color: red;">Tour Hạ Long</span>
                     <a href="package.php" class="btn">Khám phá ngay</a>
                 </div>
             </div>

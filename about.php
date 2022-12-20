@@ -70,7 +70,7 @@
    <!-- about section ends -->
 
    <!-- reviews section starts  -->
-
+<!-- 
    <section class="reviews">
 
       <h1 class="title"><span>PHẢN HỒI</span> CỦA KHÁCH HÀNG </h1>
@@ -167,7 +167,7 @@
 
       </div>
 
-   </section>
+   </section> -->
 
    <!-- reviews section ends -->
 

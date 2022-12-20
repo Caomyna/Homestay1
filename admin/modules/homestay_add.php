@@ -129,7 +129,8 @@ if (isset($_POST['submit'])) {
         address ='$locateAddress', descript = '$locateDes' , price ='$locatePrice' WHERE id_homestay = $id_homestay;";
         $conn = mysqli_connect('localhost:3306', 'root', '', 'homestay'); 
         mysqli_query($conn, $query);
-        $productEdit = execute($query);
+        // $resultset = mysqli_query($conn, $sql);
+        // $productEdit = execute($query);
         echo '<script>alert("Cập nhập thành công!")</script>';
         echo "<script>window.location.href='index.php?page=homestay_list.php'</script>";
     }
